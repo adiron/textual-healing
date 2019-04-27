@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`simple expansion (with random seed) 1`] = `
+"fish burrito
+fish cake
+chocolate burrito
+pepperoni pizza
+fish sandwich
+fish burrito
+veggie cake
+fish burrito
+pepperoni burrito
+fish sandwich
+pepperoni pizza
+cheese burrito
+chocolate sandwich
+cheese cake
+fish pizza
+cheese sandwich
+cheese pizza
+disappointment cake
+fish pizza
+veggie cake
+cheese pizza
+fish cake
+chocolate sandwich
+disappointment sandwich
+fish burrito
+pepperoni sandwich
+disappointment burrito
+chocolate sandwich
+fish sandwich
+pepperoni sandwich
+veggie sandwich
+pepperoni cake
+chocolate cake
+veggie sandwich
+disappointment burrito
+pepperoni burrito
+fish burrito
+pepperoni burrito
+veggie pizza
+cheese burrito
+chocolate pizza
+pepperoni cake
+fish sandwich
+cheese pizza
+fish cake
+fish sandwich
+disappointment cake
+chocolate sandwich
+fish pizza
+disappointment cake
+chocolate burrito
+pepperoni burrito
+veggie burrito
+pepperoni pizza
+fish cake
+fish pizza
+chocolate pizza
+veggie cake
+chocolate pizza
+disappointment cake
+fish burrito
+disappointment sandwich
+cheese pizza
+cheese pizza
+chocolate pizza
+veggie sandwich
+veggie burrito
+pepperoni sandwich
+disappointment cake
+chocolate burrito
+disappointment sandwich
+chocolate pizza
+chocolate cake
+fish pizza
+veggie sandwich
+veggie cake
+veggie sandwich
+disappointment cake
+disappointment cake
+disappointment sandwich
+disappointment sandwich
+veggie pizza
+disappointment sandwich
+veggie sandwich
+cheese pizza
+chocolate pizza
+fish sandwich
+cheese burrito
+disappointment burrito
+pepperoni cake
+chocolate cake
+pepperoni pizza
+veggie cake
+pepperoni burrito
+fish cake
+veggie burrito
+fish cake
+pepperoni burrito
+disappointment burrito
+disappointment cake"
+`;
+
+exports[`union groups 1`] = `
+"cheese
+chocolate
+cake
+veggie
+cheese
+pizza
+fish
+sandwich
+burrito
+disappointment
+veggie
+cheese
+veggie
+cheese
+fish
+cake
+cheese
+cake
+chocolate
+fish
+disappointment
+chocolate
+cheese
+burrito
+cheese
+pepperoni
+pizza
+pizza
+chocolate
+pepperoni
+burrito
+pepperoni
+cheese
+chocolate
+disappointment
+burrito
+cheese
+pizza
+pepperoni
+cake
+disappointment
+sandwich
+pizza
+chocolate
+cheese
+chocolate
+disappointment
+pepperoni
+pizza
+sandwich
+chocolate
+cake
+burrito
+disappointment
+veggie
+chocolate
+cheese
+pepperoni
+cheese
+pizza
+veggie
+disappointment
+chocolate
+fish
+cheese
+sandwich
+sandwich
+pizza
+veggie
+sandwich
+burrito
+veggie
+disappointment
+cheese
+cake
+chocolate
+pepperoni
+pepperoni
+chocolate
+cake
+pizza
+sandwich
+pizza
+pepperoni
+fish
+chocolate
+fish
+sandwich
+pepperoni
+fish
+pizza
+fish
+pepperoni
+sandwich
+pepperoni
+disappointment
+pizza
+pizza
+pizza
+sandwich"
+`;
