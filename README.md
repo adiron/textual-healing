@@ -10,7 +10,9 @@ Under the hood, Textual Healing uses [Prando](https://www.npmjs.com/package/pran
 
 Install the package if you haven't already:
 
-  npm i --save textual-healing
+```javascript
+npm i --save textual-healing
+```
 
 First, you're going to need some data:
 
