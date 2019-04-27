@@ -1,0 +1,24 @@
+{
+  "name": "textual-healing",
+  "version": "0.1.0",
+  "description": "When I get that feeling, I need textual healing",
+  "main": "src/index.js",
+  "dependencies": {
+    "prando": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-recommended": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "random",
+    "generator",
+    "text",
+    "text generation"
+  ],
+  "author": "Adi Ron",
+  "license": "GPL"
+}
