@@ -35,6 +35,15 @@ class TextualHealing {
     this.data = data;
   }
 
+  getGroup(groupName) {
+    const name = groupName.toLowerCase();
+    if (this.data[name] !== undefined) {
+      return this.data[name];
+    }
+
+    throw new Error(`Unknown group: ${ groupName }`);
+  }
+
   generate(pattern) {
     // Select pattern
     while (pattern.search(REPLACE_PATTERN) !== -1) {
@@ -46,7 +55,7 @@ class TextualHealing {
 
       const tokenGroups = (firstFilterColon === -1 ? base : base.slice(0, firstFilterColon))
         .split(UNION_SEPARATOR);
-      const tokenGroupsArray = tokenGroups.map(e => this.data[e.toLowerCase()])
+      const tokenGroupsArray = tokenGroups.map(e => this.getGroup(e))
         .reduce((a, b) => a.concat(b));
 
       const requestedFilters = base.split(FILTER_SEPARATOR).slice(1)

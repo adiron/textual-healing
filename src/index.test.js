@@ -119,3 +119,16 @@ test("union groups", () => {
     .join("\n");
   expect(result).toMatchSnapshot();
 });
+
+test("error thrown for invalid groups", () => {
+  const t = new TextualHealing(pizzaData);
+
+  expect(() => {
+    t.generate("{thisDoesntExist}");
+  }).toThrow();
+});
+
+test("string returned as-is", () => {
+  const t = new TextualHealing(pizzaData);
+  expect(t.generate("hello")).toBe("hello");
+});
