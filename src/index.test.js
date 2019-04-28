@@ -132,3 +132,29 @@ test("string returned as-is", () => {
   const t = new TextualHealing(pizzaData);
   expect(t.generate("hello")).toBe("hello");
 });
+
+test("tags do not alter patterns", () => {
+  const t = new TextualHealing({
+    "start": [ "{a (pizza)} {b (cake)}" ],
+    "a": [ "a" ],
+    "b": [ "b" ],
+  });
+  expect(t.start()).toBe("a b");
+});
+
+test("can tag and recall tags", () => {
+  const t = new TextualHealing({
+    "a": [ "disappointment" ],
+  });
+  const doubleString = t.generate("{a (0)} {(0)}");
+  expect(doubleString).toBe("disappointment disappointment");
+});
+
+test("can tag and recall tags (advanced)", () => {
+  const t = new TextualHealing(pizzaData, 123844);
+  const pattern = "I like {kind (theKind)} {bread:pl (theBread)}. Although, I could trade {(theKind)} for {kind (newKind)}. That's right: {(newKind)} {(theBread)}.";
+  const result = (new Array(100)).fill(null)
+    .map(() => t.generate(pattern))
+    .join("\n");
+  expect(result).toMatchSnapshot();
+});

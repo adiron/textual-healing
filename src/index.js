@@ -1,6 +1,7 @@
 const Prando = require("prando");
 
-const REPLACE_PATTERN = /{([A-z!:|]+)}/;
+const REPLACE_PATTERN = /{([A-z!:|]+)?( ?\(([A-z0-9]+)\))?}/;
+const TAG_RECALL_PATTERN = /{\(([A-z0-9]+)\)}/;
 const FILTER_SEPARATOR = ":";
 const UNION_SEPARATOR = "|";
 
@@ -44,31 +45,63 @@ class TextualHealing {
     throw new Error(`Unknown group: ${ groupName }`);
   }
 
-  generate(pattern) {
+  generate(pattern, tags = {}) {
     // Select pattern
     while (pattern.search(REPLACE_PATTERN) !== -1) {
+
+      // Recall groups are groups that only recall tags. For example:
+      // {(0)}
+      // {(iceCreamFlavor)}
+
       const matchGroup = pattern.match(REPLACE_PATTERN);
+
       const t = matchGroup[0]; // {token}
       const base = matchGroup[1]; // token
+      const tag = matchGroup[3]; // Tag, if any;
 
-      const firstFilterColon = base.indexOf(FILTER_SEPARATOR);
+      // No base and a tag, means this is tag recall
+      if (!base && tag) {
+        // Doing recall
+        const recallMatchGroup = matchGroup[0].match(TAG_RECALL_PATTERN);
+        const requestedTag = recallMatchGroup[1];
 
-      const tokenGroups = (firstFilterColon === -1 ? base : base.slice(0, firstFilterColon))
-        .split(UNION_SEPARATOR);
-      const tokenGroupsArray = tokenGroups.map(e => this.getGroup(e))
-        .reduce((a, b) => a.concat(b));
+        // Throw errors about unknown tags:
+        if (tags[requestedTag] === undefined) {
+          throw new Error(`Unknown tag: ${ requestedTag }`);
+        }
 
-      const requestedFilters = base.split(FILTER_SEPARATOR).slice(1)
-        .map(str => str.trim().toLowerCase());
-      const filters = requestedFilters.map(f => this.filters[f] || filterWarning(f));
+        // Finally do the replacement
+        pattern = pattern.replace(
+          TAG_RECALL_PATTERN, tags[requestedTag],
+        );
+      } else {
 
-      const result = this.generate(this.generator.nextArrayItem(tokenGroupsArray));
+        const firstFilterColon = base.indexOf(FILTER_SEPARATOR);
 
-      pattern = pattern.replace(
-        t,
-        // Run all the filters
-        filters.reduce((accumulator, fn) => fn(accumulator), result)
-      );
+        const tokenGroups = (firstFilterColon === -1 ? base : base.slice(0, firstFilterColon))
+          .split(UNION_SEPARATOR);
+        const tokenGroupsArray = tokenGroups.map(e => this.getGroup(e))
+          .reduce((a, b) => a.concat(b));
+
+        const requestedFilters = base.split(FILTER_SEPARATOR).slice(1)
+          .map(str => str.trim().toLowerCase());
+        const filters = requestedFilters.map(f => this.filters[f] || filterWarning(f));
+
+        const result = this.generate(this.generator.nextArrayItem(tokenGroupsArray), tags);
+        const resultAfterFilters = filters.reduce((accumulator, fn) => fn(accumulator), result);
+
+        // If a tag needs to be saved, save it
+        if (tag !== undefined) {
+          tags[tag] = resultAfterFilters;
+        }
+
+        pattern = pattern.replace(
+          t,
+          // Run all the filters
+          resultAfterFilters
+        );
+      }
+
     }
 
     return pattern;
