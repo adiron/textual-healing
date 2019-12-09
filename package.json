@@ -1,6 +1,6 @@
 {
   "name": "textual-healing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "When I get that feeling, I need textual healing",
   "main": "src/index.js",
   "repository": {
