@@ -3,6 +3,8 @@
   "version": "0.1.1",
   "description": "When I get that feeling, I need textual healing",
   "main": "src/index.js",
+  "browser": "dist/textual-healing.umd.js",
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "git://github.com/adiron/textual-healing.git"
@@ -13,10 +15,15 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-recommended": "^4.0.0",
-    "jest": "^24.7.1"
+    "jest": "^24.7.1",
+    "rollup": "^1.27.9",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   },
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "random",
