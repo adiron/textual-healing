@@ -69,4 +69,23 @@ describe("Generic tree expansion", () => {
     });
 
   });
+
+  test("$randInt operation works as expected", () => {
+    const t = new ObjectualHealing({
+      "start": {
+        "name": "pizza",
+        "price": {
+          "$randInt": [ 90, 100 ],
+        },
+      },
+    });
+
+    for (let i = 0; i < 1000; i++) {
+      const { price, name } = t.start();
+      expect(price).toBeGreaterThanOrEqual(90);
+      expect(price).toBeLessThanOrEqual(100);
+      expect(name).toBe("pizza");
+    }
+
+  });
 });

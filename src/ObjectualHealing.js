@@ -4,6 +4,9 @@ const OPERATIONS = {
   $pick(o, generator) {
     return generator.nextArrayItem(o.$pick);
   },
+  $randInt(o, generator) {
+    return generator.nextInt(...o.$randInt);
+  },
 };
 
 const OPERATION_NAMES = Object.keys(OPERATIONS);
