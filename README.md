@@ -6,7 +6,7 @@ predictable given a specific combination of filters, seed & data.
 
 Under the hood, Textual Healing uses [Prando](https://www.npmjs.com/package/prando).
 
-## How to use
+## How to use text generation (`TextualHealing`)
 
 Install the package if you haven't already:
 
@@ -41,7 +41,7 @@ const data = {
 Now given this data, create a new instance of TextualHealing:
 
 ```javascript
-const TextualHealing = require("textual-healing");
+const { TextualHealing } = require("textual-healing");
 
 const t = new TextualHealing(data);
 ```
@@ -55,7 +55,7 @@ t.start(); // 'disappointment cake'
 …
 ```
 
-## Advanced usage
+### Advanced usage
 
 Groups can be combined. For example the pattern `{bread|kind}` will return an
 item from either the group `bread` or `kind`. This works by concating the groups
@@ -70,3 +70,44 @@ pattern `bread` contained `{bread} {bread}`, expect to find yourself some "pizza
 cake", "sandwich burrito" or even "pizza cake cake pizza".
 
 Check out the very short source code for more info.
+
+## How to use object generation (`ObjectualHealing`)
+
+Objects can be generated as well. The idea is roughly the same (a tree with
+special bits that collapses into something without) but the mechanism more
+nuanced and the end result can be something other than a string.
+
+Take this example:
+
+```javascript
+const data = {
+  "start": {
+    "pizzaKind": {
+      $pick: [
+        "special", "original", "Italian-style"
+      ]
+    },
+    "pizzaTopping": {
+      $pick: [
+        "pepperoni",
+        "pineapple",
+        "mushroom",
+      ]
+    }
+  }
+}
+```
+
+Using it will generate an object with `pizzaKind` equal to one of "special",
+"original" or "Italian-style". Likewise the `pizzaTopping` prop will be
+selected at random.
+
+It is used much in the same way:
+
+```javascript
+const { ObjectualHealing } = require("textual-healing");
+
+const t = new ObjectualHealing(data);
+
+t.start() // { pizzaKind: 'original', pizzaTopping: 'mushroom' }
+```
