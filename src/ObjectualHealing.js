@@ -1,8 +1,12 @@
 const Prando = require("prando");
 
-const OPERATIONS = [
-  "$pick",
-];
+const OPERATIONS = {
+  $pick(o, generator) {
+    return generator.nextArrayItem(o.$pick);
+  },
+};
+
+const OPERATION_NAMES = Object.keys(OPERATIONS);
 
 function hasOneOfNestedKeys(object, matchingKeys) {
   if (typeof object !== "object") {
@@ -20,7 +24,6 @@ function hasOneOfNestedKeys(object, matchingKeys) {
   }
 
   return objectKeys.some(key => hasOneOfNestedKeys(object[key], matchingKeys));
-
 }
 
 function mapObjectValues(object, predicate) {
@@ -43,11 +46,15 @@ class ObjectualHealing {
 
   parseObject(patternObject) {
     const keys = Object.keys(patternObject);
-    if (keys.indexOf("$pick") !== -1) {
-      return this.parseObject(this.generator.nextArrayItem(patternObject.$pick));
+    // Loop through the keys and check if there's an operation
+    for (const key of keys) {
+      if (OPERATION_NAMES.indexOf(key) !== -1) {
+        return this.parseObject(OPERATIONS[key](patternObject, this.generator));
+      }
     }
 
-    if (hasOneOfNestedKeys(patternObject, OPERATIONS)) {
+    // There isn't an operation here
+    if (hasOneOfNestedKeys(patternObject, OPERATION_NAMES)) {
       return mapObjectValues(patternObject, value => this.parseObject(value));
     }
     return patternObject;
