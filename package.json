@@ -12,7 +12,7 @@
     "url": "git://github.com/adiron/textual-healing.git"
   },
   "dependencies": {
-    "prando": "^5.1.0"
+    "prando": "^5.1.2"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
