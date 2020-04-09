@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`can tag and recall tags (advanced) 1`] = `
+exports[`Text expansion (tags) can tag and recall tags (advanced) 1`] = `
 "I like cheese sandwiches. Although, I could trade cheese for veggie. That's right: veggie sandwiches.
 I like disappointment burritoes. Although, I could trade disappointment for disappointment. That's right: disappointment burritoes.
 I like chocolate cakes. Although, I could trade chocolate for chocolate. That's right: chocolate cakes.
@@ -103,7 +103,7 @@ I like veggie sandwiches. Although, I could trade veggie for veggie. That's righ
 I like veggie cakes. Although, I could trade veggie for veggie. That's right: veggie cakes."
 `;
 
-exports[`simple expansion (with random seed) 1`] = `
+exports[`Text expansion simple expansion (with random seed) 1`] = `
 "fish burrito
 fish cake
 chocolate burrito
@@ -206,7 +206,7 @@ disappointment burrito
 disappointment cake"
 `;
 
-exports[`union groups 1`] = `
+exports[`Text expansion union groups 1`] = `
 "cheese
 chocolate
 cake
