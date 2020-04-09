@@ -12,6 +12,7 @@
     "url": "git://github.com/adiron/textual-healing.git"
   },
   "dependencies": {
+    "lodash.get": "^4.4.2",
     "prando": "^5.1.2"
   },
   "devDependencies": {

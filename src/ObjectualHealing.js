@@ -1,4 +1,5 @@
 const Prando = require("prando");
+const getProp = require("lodash.get");
 
 const OPERATIONS = {
   $pick(o, generator) {
@@ -6,6 +7,9 @@ const OPERATIONS = {
   },
   $randInt(o, generator) {
     return generator.nextInt(...o.$randInt);
+  },
+  $ref(o, _, data) {
+    return getProp(data, o.$ref);
   },
 };
 
@@ -52,7 +56,7 @@ class ObjectualHealing {
     // Loop through the keys and check if there's an operation
     for (const key of keys) {
       if (OPERATION_NAMES.indexOf(key) !== -1) {
-        return this.parseObject(OPERATIONS[key](patternObject, this.generator));
+        return this.parseObject(OPERATIONS[key](patternObject, this.generator, this.data));
       }
     }
 

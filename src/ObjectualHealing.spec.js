@@ -88,4 +88,37 @@ describe("Generic tree expansion", () => {
     }
 
   });
+
+  test("$ref properly accesses data", () => {
+    const t = new ObjectualHealing({
+      "start": {
+        "name": "pizza",
+        "price": {
+          "$ref": "pizzaPrice",
+        },
+        "priceAgain": {
+          "$ref": "pizzaPrice",
+        },
+        "size": {
+          "$ref": "pizzaKinds.small",
+        },
+      },
+      "pizzaPrice": 12,
+      "pizzaKinds": {
+        "small": {
+          "$pick": [
+            "s",
+          ],
+        },
+      },
+    });
+
+    expect(t.start().price).toBe(12);
+    expect(t.start().priceAgain).toBe(12);
+    expect(t.start().size).toBe("s");
+
+
+  });
+
+
 });
