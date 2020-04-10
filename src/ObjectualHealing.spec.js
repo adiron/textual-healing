@@ -43,6 +43,29 @@ describe("Generic tree expansion", () => {
     });
   });
 
+  test("multiple items with $pick", () => {
+    const t = new ObjectualHealing({
+      "start": {
+        "$pick": [
+          {
+            "pizza": { "$pick": [
+              "tasty", "amazing", "disgusting", "interesting", "neutral", "I don't know",
+            ],
+            "$pick__amount": 2 },
+            "fennel": { "$pick": [
+              "tasty", "amazing", "disgusting", "interesting", "neutral", "I don't know",
+            ],
+            "$pick__amount": [ 1, 2 ] },
+          },
+        ],
+      },
+    });
+
+    const result = t.start();
+    expect(result.pizza.length).toEqual(2);
+    expect(result.fennel.length).toBeLessThan(3);
+  });
+
   test("nested generic tree with $pick (multi level)", () => {
     const t = new ObjectualHealing({
       "start": {

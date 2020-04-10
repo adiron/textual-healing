@@ -1,8 +1,16 @@
 const Prando = require("prando");
 const getProp = require("lodash.get");
+const { pickNFromArray } = require("./random");
 
 const OPERATIONS = {
   $pick(o, generator) {
+    if (typeof o.$pick__amount !== "undefined") {
+      // An amount was specified.
+      const amount = Array.isArray(o.$pick__amount)
+        ? generator.nextInt(...o.$pick__amount)
+        : o.$pick__amount;
+      return pickNFromArray(generator, o.$pick, amount);
+    }
     return generator.nextArrayItem(o.$pick);
   },
   $randInt(o, generator) {
