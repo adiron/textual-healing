@@ -1,7 +1,7 @@
 const TextualHealing = require("./TextualHealing");
-const ObjectualHealing = require("./ObjectualHealing");
+const ObjectiveHealing = require("./ObjectiveHealing");
 
 module.exports = {
   TextualHealing,
-  ObjectualHealing,
+  ObjectiveHealing,
 };

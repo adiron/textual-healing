@@ -1,8 +1,8 @@
-const ObjectualHealing = require("./ObjectualHealing");
+const ObjectiveHealing = require("./ObjectiveHealing");
 
 describe("Generic tree expansion", () => {
   test("basic generic tree returns values as expected", () => {
-    const t = new ObjectualHealing({
+    const t = new ObjectiveHealing({
       "start": {
         "$pick": [
           { "a": 1 },
@@ -14,7 +14,7 @@ describe("Generic tree expansion", () => {
   });
 
   test("arrays returned as-is", () => {
-    const t = new ObjectualHealing({
+    const t = new ObjectiveHealing({
       "start": {
         "$pick": [
           [ "a", "b", "c" ],
@@ -26,7 +26,7 @@ describe("Generic tree expansion", () => {
   });
 
   test("nested generic tree with $pick", () => {
-    const t = new ObjectualHealing({
+    const t = new ObjectiveHealing({
       "start": {
         "$pick": [
           {
@@ -44,7 +44,7 @@ describe("Generic tree expansion", () => {
   });
 
   test("multiple items with $pick", () => {
-    const t = new ObjectualHealing({
+    const t = new ObjectiveHealing({
       "start": {
         "$pick": [
           {
@@ -68,7 +68,7 @@ describe("Generic tree expansion", () => {
   });
 
   test("nested generic tree with $pick (multi level)", () => {
-    const t = new ObjectualHealing({
+    const t = new ObjectiveHealing({
       "start": {
         "$pick": [
           {
@@ -95,7 +95,7 @@ describe("Generic tree expansion", () => {
   });
 
   test("$randInt operation works as expected", () => {
-    const t = new ObjectualHealing({
+    const t = new ObjectiveHealing({
       "start": {
         "name": "pizza",
         "price": {
@@ -114,7 +114,7 @@ describe("Generic tree expansion", () => {
   });
 
   test("$ref properly accesses data", () => {
-    const t = new ObjectualHealing({
+    const t = new ObjectiveHealing({
       "start": {
         "name": "pizza",
         "price": {

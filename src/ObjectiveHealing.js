@@ -52,7 +52,7 @@ function mapObjectValues(object, predicate) {
   return o;
 }
 
-class ObjectualHealing {
+class ObjectiveHealing {
   constructor(data, seed, filters = {}) {
     this.generator = new Prando(seed);
     this.seed = this.generator._seed;
@@ -86,4 +86,4 @@ class ObjectualHealing {
   }
 }
 
-module.exports = ObjectualHealing;
+module.exports = ObjectiveHealing;

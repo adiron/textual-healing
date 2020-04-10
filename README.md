@@ -71,7 +71,7 @@ cake", "sandwich burrito" or even "pizza cake cake pizza".
 
 Check out the very short source code for more info.
 
-## How to use object generation (`ObjectualHealing`)
+## How to use object generation (`ObjectiveHealing`)
 
 Objects can be generated as well. The idea is roughly the same (a tree with
 special bits that collapses into something without) but the mechanism more
@@ -105,9 +105,9 @@ selected at random.
 It is used much in the same way:
 
 ```javascript
-const { ObjectualHealing } = require("textual-healing");
+const { ObjectiveHealing } = require("textual-healing");
 
-const t = new ObjectualHealing(data);
+const t = new ObjectiveHealing(data);
 
 t.start() // { pizzaKind: 'original', pizzaTopping: 'mushroom' }
 ```
