@@ -52,13 +52,14 @@ describe("Generic tree expansion", () => {
               "tasty", "amazing", "disgusting", "interesting", "neutral", "I don't know",
             ],
             "$pick__amount": 2 },
-            "fennel": { "$pick": [
-              "tasty", "amazing", "disgusting", "interesting", "neutral", "I don't know",
-            ],
-            "$pick__amount": [ 1, 2 ] },
+            "fennel": { "$pick": { "$ref": "tastes" },
+              "$pick__amount": [ 1, 2 ] },
           },
         ],
       },
+      "tastes": [
+        "tasty", "amazing", "disgusting", "interesting", "neutral", "I don't know",
+      ],
     });
 
     const result = t.start();

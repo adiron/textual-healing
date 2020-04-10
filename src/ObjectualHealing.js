@@ -3,15 +3,16 @@ const getProp = require("lodash.get");
 const { pickNFromArray } = require("./random");
 
 const OPERATIONS = {
-  $pick(o, generator) {
+  $pick(o, generator, data) {
+    const choices = o.$pick.$ref ? getProp(data, o.$pick.$ref) : o.$pick;
     if (typeof o.$pick__amount !== "undefined") {
       // An amount was specified.
       const amount = Array.isArray(o.$pick__amount)
         ? generator.nextInt(...o.$pick__amount)
         : o.$pick__amount;
-      return pickNFromArray(generator, o.$pick, amount);
+      return pickNFromArray(generator, choices, amount);
     }
-    return generator.nextArrayItem(o.$pick);
+    return generator.nextArrayItem(choices);
   },
   $randInt(o, generator) {
     return generator.nextInt(...o.$randInt);
