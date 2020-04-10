@@ -1,6 +1,6 @@
 {
   "name": "textual-healing",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "When I get that feeling, I need textual healing",
   "main": "src/index.js",
   "browser": "dist/textual-healing.umd.js",
